@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#171613" />
+    <title>Astra — Wielka Biblioteka</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231b211e'/%3E%3Ctext x='32' y='48' font-size='49' text-anchor='middle' fill='%23cbb88b'%3E✧%3C/text%3E%3C/svg%3E"
+    />
+    <script type="module" crossorigin src="./assets/index-CpihL8Qo.js"></script>
+    <link rel="modulepreload" crossorigin href="./assets/three-CCwu0QwH.js">
+    <link rel="modulepreload" crossorigin href="./assets/physics-CAolHZCj.js">
+    <link rel="stylesheet" crossorigin href="./assets/index-D3yQzuNQ.css">
+  </head>
+  <body>
+    <main id="viewport" aria-label="Interaktywna gotycka biblioteka 3D"></main>
+    <div id="vignette"></div>
+    <header class="hud">
+      <a class="brand" href="#" aria-label="Menu biblioteki"
+        ><span class="brand-star">✧</span
+        ><span data-en-html="ASTRA<small>GRAND LIBRARY</small>"
+          >ASTRA<small>WIELKA BIBLIOTEKA</small></span
+        ></a
+      >
+    </header>
+    <div id="crosshair" class="hidden"></div>
+    <div id="target" class="hidden">
+      <span id="target-name"></span>
+    </div>
+    <div id="toast" role="status"></div>
+    <footer class="hud">
+      <span id="fps"></span>
+    </footer>
+    <section id="menu">
+      <div class="menu-panel">
+        <div
+          class="eyebrow"
+          data-en-html="<span></span> ARCHIVE OF ANCIENT KNOWLEDGE"
+        >
+          <span></span> ARCHIWUM DAWNEJ WIEDZY
+        </div>
+        <h1
+          data-en-html='Grand<br /><em>Library</em><span class="title-star">✧</span>'
+        >
+          Wielka<br /><em>Biblioteka</em><span class="title-star">✧</span>
+        </h1>
+        <p
+          class="intro"
+          data-en-html="Silence between the shelves. Light on parchment.<br />Step into a world you can touch."
+        >
+          Cisza między półkami. Światło na pergaminie.<br />Wejdź do świata,
+          którego możesz dotknąć.
+        </p>
+        <button id="enter" class="primary" disabled>
+          <span id="enter-text" data-en="Preparing the library…"
+            >Przygotowywanie biblioteki…</span
+          ><span>↗</span>
+        </button>
+        <div class="menu-meta">
+          <span id="book-count">—</span
+          ><span data-en="TWO FLOORS">DWIE KONDYGNACJE</span>
+        </div>
+        <div class="rule"></div>
+        <div class="controls">
+          <div>
+            <kbd>W A S D</kbd
+            ><span data-en="Walk through the library"
+              >Spacer po bibliotece</span
+            >
+          </div>
+          <div>
+            <kbd data-en="MOUSE">MYSZ</kbd
+            ><span data-en="Look around">Rozejrzyj się</span>
+          </div>
+          <div>
+            <kbd data-en="E / LMB">E / LPM</kbd
+            ><span data-en="Grab or put down an item"
+              >Chwyć lub odłóż przedmiot</span
+            >
+          </div>
+          <div>
+            <kbd data-en="RMB + MOUSE">PPM + MYSZ</kbd
+            ><span data-en="Rotate the held item"
+              >Obróć trzymany przedmiot</span
+            >
+          </div>
+          <div>
+            <kbd>SCROLL</kbd
+            ><span data-en="Distance / pages of an open book"
+              >Odległość / kartki otwartej księgi</span
+            >
+          </div>
+          <div>
+            <kbd>Q / R</kbd
+            ><span data-en="Throw / return to its place"
+              >Rzuć / przywróć na miejsce</span
+            >
+          </div>
+          <div>
+            <kbd>F</kbd
+            ><span data-en="Hover up to the high shelves"
+              >Unoszenie do wysokich półek</span
+            >
+          </div>
+          <div>
+            <kbd data-en="SPACE / CTRL">SPACJA / CTRL</kbd
+            ><span data-en="Jump or fly up / down"
+              >Skok lub lot w górę / w dół</span
+            >
+          </div>
+        </div>
+        <div class="controls book-controls">
+          <div>
+            <kbd>O</kbd
+            ><span data-en="Open / close a book, cupboard or drawer"
+              >Otwórz / zamknij księgę, szafkę lub szufladę</span
+            >
+          </div>
+          <div>
+            <kbd>[ / ]</kbd
+            ><span data-en="Previous / next page"
+              >Poprzednia / następna strona</span
+            >
+          </div>
+        </div>
+        <div class="settings">
+          <label
+            ><span data-en="Quality">Jakość</span>
+            <select id="quality">
+              <option value="high" data-en="High">Wysoka</option>
+              <option value="low" data-en="Performance">Wydajna</option>
+            </select></label
+          ><label
+            ><span data-en="Language">Język</span>
+            <select id="lang">
+              <option value="pl">Polski</option>
+              <option value="en">English</option>
+            </select></label
+          ><button
+            id="reset"
+            title="Odłóż wszystkie przedmioty na początkowe miejsca"
+            data-en-title="Put all items back in their starting places"
+            data-en="Reset items"
+          >
+            Przywróć przedmioty</button
+          ><button id="sound" aria-pressed="false" data-en="Sound: off">
+            Dźwięk: wył.
+          </button>
+        </div>
+        <div class="brightness-setting">
+          <label for="brightness"
+            ><span data-en="Lighting brightness">Jasność oświetlenia</span>
+            <output id="brightness-value" for="brightness">100%</output></label
+          >
+          <input
+            id="brightness"
+            type="range"
+            min="0"
+            max="200"
+            step="5"
+            value="100"
+            aria-describedby="brightness-hint"
+          />
+          <small
+            id="brightness-hint"
+            data-en="0% — candlelight · 200% — bright hall"
+            >0% — blask świec · 200% — jasna sala</small
+          >
+        </div>
+        <p
+          class="save-note"
+          data-en-html="Item placement is saved automatically.<br />Shift — move faster · H — hide the interface"
+        >
+          Rozmieszczenie przedmiotów zapisuje się automatycznie.<br />Shift —
+          szybszy ruch · H — ukryj interfejs
+        </p>
+      </div>
+      <div class="scene-caption">
+        <span data-en="01 / MAIN READING ROOM">01 / CZYTELNIA GŁÓWNA</span>
+        <p data-en-html="Stone, wood<br />and a thousand stories.">
+          Kamień, drewno<br />i tysiące historii.
+        </p>
+        <small data-en="INTERACTIVE 3D RECONSTRUCTION"
+          >INTERAKTYWNA REKONSTRUKCJA 3D</small
+        >
+      </div>
+    </section>
+    <div id="error" class="hidden" role="alert"></div>
+  </body>
+</html>
